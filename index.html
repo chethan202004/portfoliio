@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHETHAN - Portfolio</title>
@@ -369,6 +370,53 @@
     border-left: 3px double white;
     margin-left: 0px;
    }
+
+   .reveal-dir.left {
+    position: relative;
+    transform: translateX(-150px);
+    opacity: 0;
+    color: white;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  .reveal-dir.right {
+    position: relative;
+    transform: translateX(150px);
+    opacity: 0;
+    color: white;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  .reveal-dir.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  
+  .reveal {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    color: white;
+    transition: transform 1s ease-in-out, opacity 1s ease;
+  }
+  
+  .reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .edu-text{
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: cursive;
+    margin-left: 20px;
+  }
+  
     </style>
 </head>
 <body>
@@ -395,32 +443,38 @@
         </div>
     </div>
 
-    <div class="project-text reveal" ><h1> MY EDUCATION</h1></div>
-    <div class="education-div">
-        <div class="ed-div ">
-          <div class="edu-details border-right reveal">
-            <h3>SCHOOLING AT PRESIDENCY</h3>
-            <p>2009-2018</p>
-            <p>Presidency is revnouned school in tumkur district</p>
-            <p>10th passout CBSE with 91.4%</p>
-          </div>
-          <div class="edu-details"></div>
-          <div class="edu-details  "> </div>
-          <div class="edu-details border-left reveal">
-            <h3>PRE UNIVERISTY AT PREDIENCY</h3>
-            <p>2019-2021</p>
-            <p>Presidency colleg is revnouned college in tumkur district</p>
-            <p>12th passout Karnataka state with 98%</p>
-          </div>
-          <div class="edu-details border-right reveal">
-            <h3>ENGINEERING AT PES</h3>
-            <p>2022-2025</p>
-            <p>Pes is one of the top engineering college in the state</p>
-            <p>Currently in the B.Tech CSE </p>
-          </div>
-          <div class="edu-details"></div>
-        </div>
+    <div class="edu-text reveal">
+      <h1>MY EDUCATION</h1>
     </div>
+    <div class="education-div">
+      <div class="ed-div">
+        <div class="edu-details border-right reveal-dir left">
+          <div class="line"></div>
+          <h3>SCHOOLING AT PRESIDENCY</h3>
+          <p>2009-2018</p>
+          <p>Presidency is renowned school in Tumkur district</p>
+          <p>10th passout CBSE with 91.4%</p>
+        </div>
+        <div class="edu-details right"></div>
+        <div class="edu-details left"></div>
+        <div class="edu-details border-left reveal-dir right">
+          <div class="line"></div>
+          <h3>PRE UNIVERSITY AT PRESIDENCY</h3>
+          <p>2019-2021</p>
+          <p>Presidency college is renowned college in Tumkur district</p>
+          <p>12th passout Karnataka state with 98%</p>
+        </div>
+        <div class="edu-details border-right reveal-dir left">
+          <div class="line"></div>
+          <h3>ENGINEERING AT PES</h3>
+          <p>2022-2025</p>
+          <p>PES is one of the top engineering colleges in the state</p>
+          <p>Currently in B.Tech CSE</p>
+        </div>
+        <div class="edu-details right"></div>
+      </div>
+    </div>
+    
    
     <!-- links -->
     <div class="nav-links">
@@ -532,7 +586,7 @@
     
 
 
-
+<script src=""></script>
 <script>
     function reveal() {
         var reveals = document.querySelectorAll('.reveal');
@@ -560,6 +614,25 @@ heart.addEventListener('click', function() {
 });
 
       
+function reveal_diff() {
+  var reveals = document.querySelectorAll('.reveal-dir');
+  var windowheight = window.innerHeight;
+  var revealpoint = 150;
+
+  for (var i = 0; i < reveals.length; i++) {
+    var revealtop = reveals[i].getBoundingClientRect().top;
+
+    if (revealtop < windowheight - revealpoint) {
+      reveals[i].classList.add('active');
+    } else {
+      reveals[i].classList.remove('active');
+    }
+  }
+}
+
+window.addEventListener('scroll', reveal_diff);
+
+
 </script>
 </body>
 </html>
